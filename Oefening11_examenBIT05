@@ -1,0 +1,37 @@
+==>Vraag 11.1
+
+db.bioinf_mongo_examen.find( {method_of_admission: {$in: ["TABLET", "BUCCAL", "SUBLINGUAL"]}})
+
+
+================================================================================
+==>vraag 11.2
+
+db.bioinf_mongo_examen.find( {"percentage_of_side_effects": {$gt: 12.0}}, {"drug": 1})
+
+{ "_id" : ObjectId("588878f14ffaac2610855700"), "drug" : "DILANTIN-30" }
+{ "_id" : ObjectId("588878f14ffaac2610855701"), "drug" : "HEDULIN" }
+{ "_id" : ObjectId("588878f14ffaac2610855705"), "drug" : "RAUDIXIN" }
+{ "_id" : ObjectId("588878f14ffaac2610855704"), "drug" : "UNITENSEN" }
+{ "_id" : ObjectId("588878f14ffaac2610855703"), "drug" : "M.V.I.-12 (WITHOUT VITAMIN K)" }
+{ "_id" : ObjectId("588878f14ffaac2610855777"), "drug" : "BIPHETAMINE 7.5" }
+{ "_id" : ObjectId("588878f14ffaac2610855779"), "drug" : "SERPALAN" }
+{ "_id" : ObjectId("588878f14ffaac2610855778"), "drug" : "MEPHYTON" }
+{ "_id" : ObjectId("588878f14ffaac26108557d2"), "drug" : "ORA-TESTRYL" }
+{ "_id" : ObjectId("588878f14ffaac26108557d3"), "drug" : "DARANIDE" }
+{ "_id" : ObjectId("588878f14ffaac2610855a91"), "drug" : "SODIUM POLYPHOSPHATE-TIN KIT" }
+{ "_id" : ObjectId("588878f14ffaac2610855cb7"), "drug" : "TOLAZAMIDE" }
+
+================================================================================
+==> vraag 11.3
+
+db.bioinf_mongo_examen.aggregate( [ 
+{$group: { _id: "$company", AvgSide: { $avg: "$percentage_of_side_effects"}}}, 
+{$match: { AvgSide: { $gt: 10.0}}}])
+
+{ "_id" : "Watson Pharmaceuticals, Inc.", "AvgSide" : 10.65 }
+{ "_id" : "Durata Therapeutics, Inc.", "AvgSide" : 10.5 }
+{ "_id" : "Galderma Laboratories, L.P.", "AvgSide" : 11.5 }
+
+==>Vraag 11.4
+
+
