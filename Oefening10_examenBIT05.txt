@@ -1,0 +1,74 @@
+==>Vraag 10.1
+
+SELECT gene_name, gene.seq_region_end-gene.seq_region_start as length
+FROM gene 
+ORDER BY length 
+LIMIT 1;
+
++-----------+--------+
+| gene_name | length |
++-----------+--------+
+| TRDD1     |      7 |
++-----------+--------+
+1 row in set (0.02 sec)
+
+================================================================================
+==>Vraag 10.2
+
+SELECT gene.gene_id, gene.gene_name, count(transcript.transcript_id) 
+FROM gene, transcript 
+WHERE gene.gene_id=transcript.gene_id  
+GROUP BY gene_id 
+ORDER BY count(transcript.transcript_id) desc  
+LIMIT 1;
+
++---------+-----------+---------------------------------+
+| gene_id | gene_name | count(transcript.transcript_id) |
++---------+-----------+---------------------------------+
+|  117153 | NDRG2     |                              80 |
++---------+-----------+---------------------------------+
+1 row in set (0.13 sec)
+
+The gene with the most transcripts is the NDRG2 gene, with 80 transcripts.
+
+================================================================================
+==>Vraag 10.3
+
+SELECT gene.chromosome, count(gene.gene_id) 
+FROM gene 
+WHERE gene.description LIKE "%cancer%" 
+GROUP BY gene.chromosome ORDER BY count(gene.gene_id) desc 
+LIMIT 1 OFFSET 1;
+
++------------+---------------------+
+| chromosome | count(gene.gene_id) |
++------------+---------------------+
+| 9          |                   5 |
++------------+---------------------+
+1 row in set (0.04 sec)
+
+================================================================================
+==>Vraag 10.4
+
+SELECT count(*) FROM exon;
+
++----------+
+| count(*) |
++----------+
+|   642590 |
++----------+
+1 row in set (0.11 sec)
+
+SELECT count(*) from exon_transcript;
+
++----------+
+| count(*) |
++----------+
+|  1178393 |
++----------+
+1 row in set (0.18 sec)
+
+The row count is different because the row count in exon gives us the number of known exons,
+while the count from the exon_transcript gives us the number of transcripts possible from these exons,
+which will be more because if an exon is alternativly spliced , it still has the same exon_id , but the transcript(id)
+is different, which means there can be more than one transcript_id for one exon_id
