@@ -1,0 +1,11 @@
+Active_Projects(Personnelno,Name,Date_of_birth,Lab_code,Research_code,Research_descript,Research_supervisor)
+
+
+3NF 	personnel(personnelno,Name,Date_of_birth)
+		Research(Research_code, Research_descr,Research_supervisor,Lab_code)
+		Lab(Lab_code,Lab_name)
+		Active_projects(personnelno, research_code)
+
+==> eerste stap = create table for each different set of data
+==>2NF Elk non-primary attribute is volledig afhankelijk van primary key
+
