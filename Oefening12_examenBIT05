@@ -1,0 +1,19 @@
+==>Vraag 12.1
+
+curl http://rest.ensembl.org/variation/10090/rs4224828?content-type=application/json
+
+{"source":"Variants (including SNPs and indels) imported from dbSNP","mappings":[{"location":"4:136443949-136443949","assembly_name":"GRCm38","end":136443949,
+"seq_region_name":"4","strand":1,"coord_system":"chromosome","allele_string":"T/C","start":136443949}],"name":"rs4224828","MAF":null,"ambiguity":"Y","var_class":"SNP","synonyms":[],"evidence":["Multiple_observations","Frequency"],"ancestral_allele":null,"minor_allele":null,"most_severe_consequence":"3_prime_UTR_variant"}
+
+First the Url is given : http://rest.ensembl.org
+After this the endpoints are given: variation/:species/:id
+variation because we are looking for a variant type.
+The species id from the mouse is 10090
+the id of the variant we are looking for  = rs4224828
+after the "?" the optional parameters are listed, in this case the output format
+
+================================================================================
+
+==>Vraag 12.2
+
+curl http://rest.ensembl.org/sequence/id/ENSMUSG00000026923.15?content-type=application/json
